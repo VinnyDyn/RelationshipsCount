@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="VinnyBComponents" constructor="RelationshipsCount" version="0.0.1" display-name-key="RelationshipsCount" description-key="RelationshipsCount description" control-type="standard">
+<type-group name="allAttributeTypes">
+        <type>Whole.None</type>
+        <type>TwoOptions</type>
+        <type>DateAndTime.DateOnly</type>
+        <type>DateAndTime.DateAndTime</type>
+        <type>Decimal</type>
+        <type>FP</type>
+        <type>Multiple</type>
+        <type>Currency</type>
+        <type>OptionSet</type>
+        <type>SingleLine.Email</type>
+        <type>SingleLine.Text</type>
+        <type>SingleLine.TextArea</type>
+        <type>SingleLine.URL</type>
+        <type>SingleLine.Ticker</type>
+        <type>SingleLine.Phone</type>
+      </type-group>
+      <property name="attribute" display-name-key="Attribute-Key" description-key="Description-Key" of-type-group="allAttributeTypes" usage="bound" required="true" />
+      <property name="OneToMany" display-name-key="One To Many Entities splitted by comma" description-key="Example: task,annotation,incident" of-type="Multiple" usage="input" required="false" />
+      <property name="ManyToMany" display-name-key="Many to Many Relationships splitted by comma" description-key="Example: bulkoperationlog,entitlementcontacts" of-type="Multiple" usage="input" required="false" />
+    <resources>
+      <code path="index.ts" order="1"/>
+      <css path="css/RelationshipsCount.css" order="1" />
+      <resx path="strings/RelationshipsCount.1033.resx" version="1.0.0" />
+      <resx path="strings/RelationshipsCount.1046.resx" version="1.0.0" />
+    </resources>
+  </control>
+</manifest>

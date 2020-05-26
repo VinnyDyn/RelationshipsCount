@@ -1,0 +1,45 @@
+#selector360_container
+{
+    width: 100%;
+}
+
+#selector360_container > div
+{
+    padding: 10px;
+    display: flex;
+    flex: 1;
+}
+
+.refresh_button
+{
+    width: 100%;
+    text-align: left;
+    margin: 3px;
+    padding: 3px;
+    border: none;
+    cursor: pointer;
+    flex: 8;
+}
+
+.sortby_button
+{
+    width: 100%;
+    margin: 3px;
+    padding: 3px;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+}
+
+#selector360_container > div > div > label
+{
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
+}
+
+#selector360_container > div > div
+{
+    padding: 10px;
+    flex: 1;
+}

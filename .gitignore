@@ -1,0 +1,9 @@
+/node_modules
+**/generated
+/out
+VinnyB.RetrieveSchema360/.vs
+VinnyB.RetrieveSchema360/bin
+VinnyB.RetrieveSchema360/obj
+VinnyB.RetrieveSchema360/packages
+/bin
+/obj
