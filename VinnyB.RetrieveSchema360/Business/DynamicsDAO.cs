@@ -205,7 +205,7 @@ namespace VinnyB.RetrieveSchema360.Business
                 LogicalName = entityLogicalName.ToLower(),
                 EntityFilters = EntityFilters.Default
             };
-            RetrieveEntityResponse response = (RetrieveEntityResponse)Service.Execute(request);
+            RetrieveEntityResponse response = (RetrieveEntityResponse)ServiceAdmin.Execute(request);
 
             //Display Name
             relationshipDetailsModel.DisplayName = response.EntityMetadata.DisplayName.GetLabel(this.LanguageCode);
@@ -238,7 +238,7 @@ namespace VinnyB.RetrieveSchema360.Business
             }
             catch (FaultException fe)
             {
-                if (!fe.Message.Contains("SharePoint S2S and MSTeams integration is not enabled for this org"))
+                if(!fe.Message.Contains("is missing prvRead") && !fe.Message.Contains("SharePoint S2S and MSTeams integration is not enabled for this org"))
                     throw new InvalidPluginExecutionException(fe.Message);
             }
             catch (KeyNotFoundException knfe)
@@ -254,7 +254,9 @@ namespace VinnyB.RetrieveSchema360.Business
         private int GetRecordsManyToMany(string relationshipSchemaName, string attributeLogicalName)
         {
             int count = 0;
-            var query = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false' aggregate='true'>
+            try
+            {
+                var query = $@"<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false' aggregate='true'>
                           <entity name='{relationshipSchemaName}'>
                             <attribute name='{attributeLogicalName.ToLower()}' aggregate='count' alias='count'/>   
                             <filter type='and'>
@@ -263,10 +265,15 @@ namespace VinnyB.RetrieveSchema360.Business
                           </entity>
                         </fetch>";
 
-            EntityCollection result = Service.RetrieveMultiple(new FetchExpression(query));
+                EntityCollection result = Service.RetrieveMultiple(new FetchExpression(query));
 
-            foreach (var count_ in result.Entities) { count = (Int32)((AliasedValue)count_["count"]).Value; }
-
+                foreach (var count_ in result.Entities) { count = (Int32)((AliasedValue)count_["count"]).Value; }
+            }
+            catch (FaultException fe)
+            {
+                if (!fe.Message.Contains("is missing prvRead"))
+                    throw new InvalidPluginExecutionException(fe.Message);
+            }
             return count;
         }
         public enum RelationshipType
