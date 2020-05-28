@@ -62,10 +62,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\DynamicsDAO.cs" />
+    <Compile Include="Extensions\BooleanOptionSetMetadataExtensions.cs" />
     <Compile Include="Extensions\EntitySchemaExtensions.cs" />
+    <Compile Include="Extensions\OptionMetadataCollectionExtensions.cs" />
+    <Compile Include="Extensions\OptionsModelExtensions.cs" />
     <Compile Include="Extensions\RelationshipDetailsExtensions.cs" />
+    <Compile Include="Models\AttributeModel.cs" />
+    <Compile Include="Models\OptionModel.cs" />
+    <Compile Include="Models\OptionsModel.cs" />
     <Compile Include="Models\RelationshipDetailsModel.cs" />
     <Compile Include="Models\RelationshipModel.cs" />
+    <Compile Include="Plugins\GroupByAttribute.cs" />
     <Compile Include="Plugins\RetrieveRelationshipAdditionalDetails.cs" />
     <Compile Include="Plugins\RetrieveRelationships.cs" />
     <Compile Include="Extensions\LabelExtensions.cs" />

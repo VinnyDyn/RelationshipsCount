@@ -16,16 +16,20 @@ namespace VinnyB.RetrieveSchema360.Extensions
         /// <returns></returns>
         public static string GetLabel(this Microsoft.Xrm.Sdk.Label th, int? languageCode = null)
         {
+            string label = string.Empty;
             if (languageCode == null)
-                return th.LocalizedLabels.Select(s => s.Label).FirstOrDefault();
+                label = th.LocalizedLabels.Select(s => s.Label).FirstOrDefault();
             else
             {
-                var display = th.LocalizedLabels.Where(w => w.LanguageCode == languageCode).Select(s => s.Label).FirstOrDefault();
-                if (string.IsNullOrEmpty(display))
-                    display = th.LocalizedLabels.Select(s => s.Label).FirstOrDefault();
-
-                return display;
+                label = th.LocalizedLabels.Where(w => w.LanguageCode == languageCode).Select(s => s.Label).FirstOrDefault();
+                if (string.IsNullOrEmpty(label))
+                    label = th.LocalizedLabels.Select(s => s.Label).FirstOrDefault();
             }
+
+            if (string.IsNullOrEmpty(label))
+                label = "--";
+
+            return label;
         }
     }
 }

@@ -13,12 +13,13 @@ export interface IRelationshipsTSXProps {
 export interface IRelationshipsTSXState extends React.ComponentState, IRelationshipsTSXProps {
 }
 
-export class RelationshipsTSX extends
-    React.Component<IRelationshipsTSXProps, IRelationshipsTSXState> {
+export class RelationshipsTSX extends React.Component<IRelationshipsTSXProps, IRelationshipsTSXState> {
 
+    // Lists will receive the relationships
     private oneToManyEntities: any[];
     private manyToManyEntities: any[];
 
+    // Init
     constructor(props: IRelationshipsTSXProps) {
         super(props);
 
@@ -39,6 +40,7 @@ export class RelationshipsTSX extends
         this.onLoad();
     }
 
+    // Update
     componentWillReceiveProps(props: IRelationshipsTSXProps) {
         this.oneToManyEntities = new Array();
         this.manyToManyEntities = new Array();
@@ -49,11 +51,14 @@ export class RelationshipsTSX extends
             relationshipsModel: props.relationshipsModel,
 
             OneToManyEntities: this.oneToManyEntities,
-            ManyToManyEntities: this.manyToManyEntities
+            ManyToManyEntities: this.manyToManyEntities,
+
+            Descending: false
         });
         this.onLoad();
     }
 
+    // Render
     render(): JSX.Element {
         return <div key={this.state.relationshipsModel.RecordId} id="selector360_container">
             <div>
@@ -84,11 +89,15 @@ export class RelationshipsTSX extends
         </div>;
     }
 
+    // Called by button, refresh all controls
     refresh = () => {
         RelationshipsCountData.Refresh();
     }
 
+    // Called on Init or Update
     onLoad = () => {
+
+        //1:N
         this.state.relationshipsModel.RelationshipsOneToMany.forEach(relationship_ => {
             this.oneToManyEntities.push(React.createElement(RelationshipTSX,
                 {
@@ -98,6 +107,8 @@ export class RelationshipsTSX extends
                     relationshipModel: relationship_
                 }));
         });
+
+        //N:N
         this.state.relationshipsModel.RelationshipsManyToMany.forEach(relationship_ => {
             this.manyToManyEntities.push(React.createElement(RelationshipTSX,
                 {
@@ -106,9 +117,10 @@ export class RelationshipsTSX extends
                     recordLogicalName: this.state.recordLogicalName,
                     relationshipModel: relationship_
                 }));
-        });
+        });        
     }
 
+    //OrderBy Display Name
     sortByDisplayName = () => {
         if (!this.state.Descending) {
             this.setState({
@@ -127,6 +139,7 @@ export class RelationshipsTSX extends
         }
     }
 
+    //OrderBy Count Records
     sortByCount = () => {
         if (!this.state.Descending) {
             this.setState({
@@ -145,6 +158,7 @@ export class RelationshipsTSX extends
         }
     }
 
+    //A > Z
     orderByDisplayName(a: RelationshipTSX, b: RelationshipTSX): number {
         if (a.props.relationshipModel.DN > b.props.relationshipModel.DN) {
             return 1;
@@ -155,6 +169,7 @@ export class RelationshipsTSX extends
         return 0;
     }
 
+    //Z > A
     orderByDescDisplayName(a: RelationshipTSX, b: RelationshipTSX): number {
         if (a.props.relationshipModel.DN < b.props.relationshipModel.DN) {
             return 1;
@@ -165,6 +180,7 @@ export class RelationshipsTSX extends
         return 0;
     }
 
+    //0 > 9
     orderByCount(a: RelationshipTSX, b: RelationshipTSX): number {
         if (a.props.relationshipModel.C > b.props.relationshipModel.C) {
             return 1;
@@ -175,6 +191,7 @@ export class RelationshipsTSX extends
         return 0;
     }
 
+    //9 > 0
     orderByDescCount(a: RelationshipTSX, b: RelationshipTSX): number {
         if (a.props.relationshipModel.C < b.props.relationshipModel.C) {
             return 1;

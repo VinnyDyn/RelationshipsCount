@@ -17,6 +17,7 @@
     margin: 3px;
     padding: 3px;
     border: none;
+    background: whitesmoke;
     cursor: pointer;
     flex: 8;
 }
@@ -27,19 +28,34 @@
     margin: 3px;
     padding: 3px;
     border: none;
+    background: whitesmoke;
     cursor: pointer;
     flex: 1;
 }
 
-#selector360_container > div > div > label
-{
-    margin: 0px;
-    padding: 0px;
-    font-weight: bold;
-}
-
+/* 1:N and N:N */
 #selector360_container > div > div
 {
     padding: 10px;
     flex: 1;
+}
+
+/* Entity or Relationship Details */
+#selector360_container > div > div > div > div
+{
+    margin: 3px;
+    padding: 10px;
+    background: whitesmoke;
+    border-radius: 5px;
+}
+
+.drilldown_select
+{
+    width: 100%;
+    margin-top: 5px;
+    padding: 3px;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    background-color: white;
 }

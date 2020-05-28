@@ -1,8 +1,8 @@
-export class RetrieveEntityDetailsRequest
+export class GroupByAttributeRequestRequest
 {
-	constructor()
-	{
-		this.getMetadata = function () {
+    constructor()
+    {
+        this.getMetadata = function() {
             return {
                 boundParameter: null,
                 parameterTypes: {
@@ -10,11 +10,11 @@ export class RetrieveEntityDetailsRequest
                         "typeName": "Edm.Int32",
                         "structuralProperty": 1
                     },
-                    "RecordId": {
+                    "RecordLogicalName": {
                         "typeName": "Edm.String",
                         "structuralProperty": 1
                     },
-                    "RecordLogicalName": {
+                    "RecordId": {
                         "typeName": "Edm.String",
                         "structuralProperty": 1
                     },
@@ -26,25 +26,34 @@ export class RetrieveEntityDetailsRequest
                         "typeName": "Edm.String",
                         "structuralProperty": 1
                     },
+                    "GroupByAttributeLogicalName": {
+                        "typeName": "Edm.String",
+                        "structuralProperty": 1
+                    },
+                    "GroupByAttributeType": {
+                        "typeName": "Edm.String",
+                        "structuralProperty": 1
+                    },
                     "IntersectEntityName": {
                         "typeName": "Edm.String",
                         "structuralProperty": 1
                     }
                 },
                 operationType: 0,
-                operationName: "vnb_Schema360RetrieveRelationshipAdditionalDetails"
+                operationName: "vnb_Schema360GroupByAttribute"
             };
-        }; 
-	}
+        };
+    }
 
-	public LanguageCode : number;
+    public LanguageCode : number;
+    public RecordLogicalName : string;
 	public RecordId : string;
-	public RecordLogicalName : string;
 	public EntityLogicalName : string;
-	public AttributeLogicalName : string;
-	public IntersectEntityName : string | null;
-	
-	getMetadata(): void {
-		
-	}
+    public AttributeLogicalName : string;
+    public GroupByAttributeLogicalName : string;
+    public IntersectEntityName : string;
+    public GroupByAttributeType : string;
+    
+    getMetadata(): void {
+    }
 }

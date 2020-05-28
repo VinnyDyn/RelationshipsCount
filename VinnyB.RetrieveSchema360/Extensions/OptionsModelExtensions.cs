@@ -9,16 +9,16 @@ using VinnyB.RetrieveSchema360.Models;
 
 namespace VinnyB.RetrieveSchema360.Extensions
 {
-    public static class RelationshipDetailsExtensions
+    public static class OptionsModelExtensions
     {
         /// <summary>
         /// Convert RelationshipDetails to JSON
         /// </summary>
         /// <param name="th"></param>
         /// <returns></returns>
-        public static string ToJSON(this RelationshipDetailsModel th)
+        public static string ToJSON(this OptionsModel th)
         {
-            th.Attributes = th.Attributes.OrderBy(o => o.DisplayName).ToArray();
+            th.Options = th.Options.OrderBy(o => o.DisplayName).ToArray();
             using (MemoryStream memoryStream = new MemoryStream())
             {
                 DataContractJsonSerializer serializer = new DataContractJsonSerializer(th.GetType());

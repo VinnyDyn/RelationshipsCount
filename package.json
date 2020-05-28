@@ -11,7 +11,8 @@
   "dependencies": {
     "@types/node": "^10.12.18",
     "@types/powerapps-component-framework": "^1.2.0",
-    "@types/xrm": "^9.0.27"
+    "@types/xrm": "^9.0.27",
+    "react-google-charts": "^3.0.15"
   },
   "devDependencies": {
     "pcf-scripts": "^1",

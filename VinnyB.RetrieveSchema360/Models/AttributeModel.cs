@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace VinnyB.RetrieveSchema360.Models
 {
     [DataContract]
-    public class RelationshipDetailsModel
+    public class AttributeModel
     {
+        [DataMember(Name = "LN")]
+        public string LogicalName { get; set; }
+
         [DataMember(Name = "DN")]
         public string DisplayName { get; set; }
 
-        [DataMember(Name = "C")]
-        public int Count { get; set; }
-
-        [DataMember]
-        public AttributeModel[] Attributes { get; set; }
+        [DataMember(Name = "T")]
+        public int Type { get; set; }
     }
 }
